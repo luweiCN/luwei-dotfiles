@@ -1,0 +1,3 @@
+dotfiles/config/tmux/resurrect/
+dotfiles/config/tmux/plugins/
+*log*

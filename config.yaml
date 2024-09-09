@@ -1,0 +1,46 @@
+config:
+  backup: true
+  banner: true
+  create: true
+  dotpath: dotfiles
+  keepdot: false
+  link_dotfile_default: nolink
+  link_on_import: nolink
+  longkey: false
+dotfiles:
+  d_omf:
+    src: config/omf
+    dst: ~/.config/omf
+  f_starship.toml:
+    src: config/starship.toml
+    dst: ~/.config/starship.toml
+  d_iterm2:
+    src: config/iterm2
+    dst: ~/.config/iterm2
+  d_thefuck:
+    src: config/thefuck
+    dst: ~/.config/thefuck
+  d_tmux:
+    src: config/tmux
+    dst: ~/.config/tmux
+  d_wezterm:
+    src: config/wezterm
+    dst: ~/.config/wezterm
+  d_nvim:
+    src: config/nvim
+    dst: ~/.config/nvim
+  d_fish:
+    src: config/fish
+    dst: ~/.config/fish
+    chmod: '700'
+profiles:
+  MacBook-Pro-14.local:
+    dotfiles:
+    - d_omf
+    - f_starship.toml
+    - d_iterm2
+    - d_thefuck
+    - d_tmux
+    - d_wezterm
+    - d_nvim
+    - d_fish
