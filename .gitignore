@@ -1,3 +1,6 @@
 dotfiles/config/tmux/resurrect/
 dotfiles/config/tmux/plugins/
+dotfiles/config/iterm2/AppSupport/
+dotfiles/config/iterm2/sockets/
 *log*
+
