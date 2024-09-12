@@ -30,6 +30,11 @@ return {
             local hex_color = utils.hslToHex(h, s, l)
             return MiniHipatterns.compute_hex_color_group(hex_color, "bg")
           end,
+          -- 高亮ip --
+          ip = {
+            pattern = "%d+%.%d+%.%d+%.%d+",
+            group = "Number",
+          },
         },
       },
     },
