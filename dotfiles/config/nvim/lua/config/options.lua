@@ -15,7 +15,7 @@ vim.opt.linebreak = true
 
 -- 不可见字符
 vim.opt.list = true -- 启用显示不可见字符
-vim.opt.listchars = "space:·,tab:>-,trail:~,extends:>,precedes:<" -- 定义不可见字符的显示方式
+vim.opt.listchars = "space: ,tab:>-,trail:~,extends:>,precedes:<" -- 定义不可见字符的显示方式
 
 --Undercurl
 vim.cmd([[let &t_Cs = "\e[4:3m"]])

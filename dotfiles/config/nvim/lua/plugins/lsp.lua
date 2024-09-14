@@ -9,6 +9,7 @@ return {
         "luacheck",
         "shellcheck",
         "shfmt",
+        "codespell",
       })
     end,
   },
@@ -26,6 +27,8 @@ return {
           "typescript-language-server",
           "css-lsp",
           "vue",
+          "eslint-lsp",
+          "eslint_d",
         },
         automatic_installation = true,
       })
@@ -53,6 +56,8 @@ return {
       })
 
       lspconfig.eslint.setup({
+        single_file_support = false,
+        root_dir = require("luwei.util").get_eslint_root_path,
         settings = {
           disableRuleComment = {
             enable = false,
@@ -65,16 +70,29 @@ return {
             mode = "auto",
           },
           validate = "on",
+          format = true,
           problems = {
             shortenToSingleLine = true,
           },
-          on_attach = function(client, bufnr)
-            vim.api.nvim_create_autocmd("BufWritePre", {
-              buffer = bufnr,
-              command = "EslintFixAll",
-            })
-          end,
+          experimental = {
+            useFlatConfig = true,
+          },
         },
+        on_new_config = function(new_config)
+          local util = require("luwei.util")
+          local new_eslint_config = util.get_new_eslint_config()
+
+          if new_eslint_config then
+            new_config.settings.options = {
+              overrideConfigFile = new_eslint_config,
+            }
+          else
+            local old_eslint_config = util.get_old_eslint_config()
+            new_config.settings.options = {
+              overrideConfigFile = old_eslint_config,
+            }
+          end
+        end,
       })
 
       -- tailwindcss
@@ -228,22 +246,5 @@ return {
       inlayHints = { enable = true },
       setup = {},
     },
-  },
-  {
-    "neovim/nvim-lspconfig",
-    opts = function()
-      local keys = require("lazyvim.plugins.lsp.keymaps").get()
-      vim.list_extend(keys, {
-        {
-          "gd",
-          function()
-            -- DO NOT RESUSE WINDOW
-            require("telescope.builtin").lsp_definitions({ reuse_win = false })
-          end,
-          desc = "Goto Definition",
-          has = "definition",
-        },
-      })
-    end,
   },
 }

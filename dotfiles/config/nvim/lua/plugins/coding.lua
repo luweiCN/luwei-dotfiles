@@ -107,29 +107,4 @@ return {
   {
     "rushjs1/nuxt-goto.nvim",
   },
-  {
-    "nabekou29/js-i18n.nvim",
-    dependencies = {
-      "neovim/nvim-lspconfig",
-      "neovim/nvim-treesitter",
-      "nvim.lua/plenary.nvim",
-    },
-    event = { "BufReadPre", "BufNewFile" },
-    opts = {
-      primary_language = { "zh", "zh-CN", "en", "en-US", "zh-HK", "zh-TW", "zh-MO", "zh-SG" },
-      translation_source = { "**/{locales,lang,language,lang,locale,locales,language,lang,messages}/**/*.{js,ts,json}" },
-      key_separator = ".",
-      virt_text = {
-        enable = true,
-        conceal_key = false,
-        fallback = false,
-        max_length = 0,
-        max_width = 0,
-      },
-      diagnostic = {
-        enable = true,
-        serverity = vim.diagnostic.severity.HINT,
-      },
-    },
-  },
 }
