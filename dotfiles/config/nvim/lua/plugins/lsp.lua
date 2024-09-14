@@ -57,7 +57,12 @@ return {
 
       lspconfig.eslint.setup({
         single_file_support = false,
-        root_dir = require("luwei.util").get_eslint_root_path,
+        root_dir = function(filename)
+          if string.find(filename, "node_modules/") then
+            return nil
+          end
+          return require("luwei.util").get_eslint_root_path()
+        end,
         settings = {
           disableRuleComment = {
             enable = false,
