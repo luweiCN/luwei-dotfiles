@@ -94,4 +94,9 @@ M.get_eslint_config = function()
   return M.get_new_eslint_config() or M.get_old_eslint_config()
 end
 
+M.get_typescript_server_path = function(root_dir)
+  local project_root = util.find_node_modules_ancestor(root_dir)
+  return project_root and (util.path.join(project_root, "node_modules", "typescript", "lib")) or ""
+end
+
 return M

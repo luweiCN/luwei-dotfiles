@@ -20,15 +20,16 @@ return {
     config = function()
       require("mason-lspconfig").setup({
         ensure_installed = {
-          "tsserver",
+          "ts_ls",
           "pyright",
           "gopls",
-          "tailwindcss-language-server",
-          "typescript-language-server",
-          "css-lsp",
-          "vue",
-          "eslint-lsp",
-          "eslint_d",
+          "tailwindcss",
+          "cssls",
+          "eslint",
+          "volar",
+          "html",
+          "lua_ls",
+          "yamlls",
         },
         automatic_installation = true,
       })
@@ -48,11 +49,26 @@ return {
         root_dir = lspconfig.util.root_pattern("package.json", ".git"),
       })
 
-      -- vue vetur
-      lspconfig.vuels.setup({
-        cmd = { "vls" },
+      -- vue volar
+      lspconfig.volar.setup({
+        cmd = { "vue-language-server", "--stdio" },
         filetypes = { "vue" },
+        init_options = {
+          typescript = {
+            tsdk = "",
+          },
+        },
         root_dir = lspconfig.util.root_pattern("package.json", ".git"),
+        on_new_config = function(new_config, new_root_dir)
+          local util = require("luwei.util")
+          if
+            new_config.init_options
+            and new_config.init_options.typescript
+            and new_config.init_options.typescript.tsdk == ""
+          then
+            new_config.init_options.typescript.tsdk = util.get_typescript_server_path(new_root_dir)
+          end
+        end,
       })
 
       lspconfig.eslint.setup({
@@ -117,10 +133,20 @@ return {
         validate = true,
       })
 
-      -- tsserver
-      lspconfig.tsserver.setup({
-        root_dir = lspconfig.util.root_pattern("package.json", ".git"),
-        single_file_support = false,
+      -- ts_ls
+      lspconfig.ts_ls.setup({
+        init_options = { hostInfo = "neovim" },
+        cmd = { "typescript-language-server", "--stdio" },
+        filetypes = {
+          "javascript",
+          "javascriptreact",
+          "javascript.jsx",
+          "typescript",
+          "typescriptreact",
+          "typescript.tsx",
+        },
+        root_dir = lspconfig.util.root_pattern("tsconfig.json", "jsconfig.json", "package.json", ".git"),
+        single_file_support = true,
         settings = {
           typescript = {
             inlayHints = {
