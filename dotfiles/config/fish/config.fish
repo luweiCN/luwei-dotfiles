@@ -1,7 +1,7 @@
 if status is-interactive
     # Commands to run in interactive sessions can go here
 end
-eval "$($HOME/homebrew/bin/brew shellenv)"
+eval "$($brew_path shellenv)"
 
 export PATH="$PATH:$(yarn global bin)"
 fish_add_path /Applications/WezTerm.app/Contents/MacOS
