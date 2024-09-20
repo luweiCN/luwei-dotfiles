@@ -58,3 +58,15 @@ profiles:
       - d_fish
     variables:
       brew_path: /opt/homebrew/bin/brew
+  MacStudio-7677
+    dotfiles:
+    - d_omf
+    - f_starship.toml
+    - d_iterm2
+    - d_thefuck
+    - d_tmux
+    - d_wezterm
+    - d_nvim
+    - d_fish
+    variables:
+      brew_path: $HOME/homebrew/bin/brewv
