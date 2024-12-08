@@ -32,33 +32,33 @@ dotfiles:
   d_fish:
     src: config/fish
     dst: ~/.config/fish
-    chmod: "700"
+    chmod: '700'
 profiles:
   MacBookPro:
     dotfiles:
-      - d_omf
-      - f_starship.toml
-      - d_iterm2
-      - d_thefuck
-      - d_tmux
-      - d_wezterm
-      - d_nvim
-      - d_fish
+    - d_omf
+    - f_starship.toml
+    - d_iterm2
+    - d_thefuck
+    - d_tmux
+    - d_wezterm
+    - d_nvim
+    - d_fish
     variables:
       brew_path: $HOME/homebrew/bin/brew
   CNMAC0702.local:
     dotfiles:
-      - d_omf
-      - f_starship.toml
-      - d_iterm2
-      - d_thefuck
-      - d_tmux
-      - d_wezterm
-      - d_nvim
-      - d_fish
+    - d_omf
+    - f_starship.toml
+    - d_iterm2
+    - d_thefuck
+    - d_tmux
+    - d_wezterm
+    - d_nvim
+    - d_fish
     variables:
       brew_path: /opt/homebrew/bin/brew
-  MacStudio-7677
+  MacStudio-7677.local:
     dotfiles:
     - d_omf
     - f_starship.toml

@@ -5,7 +5,9 @@ eval "$($HOME/homebrew/bin/brew shellenv)"
 
 export PATH="$PATH:$(yarn global bin)"
 fish_add_path /Applications/WezTerm.app/Contents/MacOS
+fish_add_path /Users/luwei/homebrew/opt/openjdk/bin
 thefuck --alias | source
+
 
 alias vim=nvim
 
